@@ -22,6 +22,11 @@ SECTIONS {
         . = ALIGN(8);
         __bss_end = .;
     } > RAM :data
+    .boot_pages (NOLOAD) : ALIGN(4096) {
+        __boot_pages_start = .;
+        . += 64K;
+        __boot_pages_end = .;
+    } > RAM :data
     .stack (NOLOAD) : ALIGN(4096) {
         __stack_bottom = .;
         . += 64K;
