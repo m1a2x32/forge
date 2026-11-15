@@ -14,3 +14,7 @@ bench = false
 [dependencies]
 forge-kernel = { path = "../../kernel/forge-kernel" }
 forge-arch-aarch64 = { path = "../../arch/forge-arch-aarch64" }
+
+[features]
+test-exception = []
+test-panic = []
