@@ -1,0 +1,16 @@
+[package]
+name = "forge-platform-qemu-virt"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+build = "build.rs"
+
+[[bin]]
+name = "forge-qemu-virt"
+path = "src/main.rs"
+test = false
+bench = false
+
+[dependencies]
+forge-kernel = { path = "../../kernel/forge-kernel" }
+forge-arch-aarch64 = { path = "../../arch/forge-arch-aarch64" }

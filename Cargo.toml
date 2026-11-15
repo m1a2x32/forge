@@ -1,5 +1,5 @@
 [workspace]
-members = ["kernel/forge-kernel"]
+members = ["kernel/forge-kernel", "arch/forge-arch-aarch64", "platforms/forge-platform-qemu-virt"]
 default-members = ["kernel/forge-kernel"]
 resolver = "3"
 

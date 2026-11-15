@@ -3,5 +3,17 @@
 version = 4
 
 [[package]]
+name = "forge-arch-aarch64"
+version = "0.1.0"
+
+[[package]]
 name = "forge-kernel"
 version = "0.1.0"
+
+[[package]]
+name = "forge-platform-qemu-virt"
+version = "0.1.0"
+dependencies = [
+ "forge-arch-aarch64",
+ "forge-kernel",
+]
