@@ -29,6 +29,20 @@ pub fn current_el() -> u64 {
     value >> 2
 }
 
+pub fn stack_pointer() -> usize {
+    let value: usize;
+    // SAFETY: reads the stack pointer without modifying state.
+    unsafe { asm!("mov {}, sp", out(reg) value, options(nomem, nostack, preserves_flags)) };
+    value
+}
+
+pub fn system_control() -> u64 {
+    let value: u64;
+    // SAFETY: read-only CPU register available at EL1.
+    unsafe { asm!("mrs {}, sctlr_el1", out(reg) value, options(nomem, nostack, preserves_flags)) };
+    value
+}
+
 /// Fatal/idle stop for this milestone. All interrupts remain masked, and there is
 /// no scheduler or wakeup protocol yet. WFE can wake spuriously, so always loop.
 pub fn halt() -> ! {
