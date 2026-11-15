@@ -68,6 +68,9 @@ _start:
     str xzr, [x2], #8
     b .Lzero_bss
 .Lbss_done:
+    adrp x2, __exception_vectors
+    add x2, x2, :lo12:__exception_vectors
+    msr vbar_el1, x2
     dsb sy
     isb
     mov x0, x20

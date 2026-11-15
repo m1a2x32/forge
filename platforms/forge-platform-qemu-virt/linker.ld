@@ -11,6 +11,7 @@ SECTIONS {
     . = ORIGIN(RAM);
     .text : {
         KEEP(*(.text.boot))
+        KEEP(*(.text.vectors))
         *(.text .text.*)
     } > RAM :text
     .rodata ALIGN(4096) : { *(.rodata .rodata.*) } > RAM :rodata
@@ -30,5 +31,6 @@ SECTIONS {
     /DISCARD/ : { *(.comment) *(.eh_frame*) *(.note*) }
 }
 ASSERT((_start == ORIGIN(RAM)), "Image header must be first")
+ASSERT((__exception_vectors % 2048 == 0), "Vectors must be 2 KiB aligned")
 ASSERT((__stack_top % 16 == 0), "AArch64 stack must be 16-byte aligned")
 ASSERT((__kernel_end < 0x40200000), "Bootstrap image exceeded its 2 MiB budget")
